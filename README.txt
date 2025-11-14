@@ -15,6 +15,9 @@ TO RUN THE ADMIN PAGE
 
 npm run dev
 
+Login Detail 
+puravmalik24@gmail.com
+12345678
 
 TO MAKE A PAYMENT THROUGH CARD
 Card Number: 4111 1111 1111 1111
