@@ -46,9 +46,80 @@
     border: 4px solid tomato;
     padding:2px ;
 }
+
+.explore-stalls-title{
+    color: #262626;
+    font-weight: 500;
+    margin-top: 30px;
+    font-size: max(2vw, 24px);
+}
+
+.explore-stalls-list{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+    margin: 20px 0px;
+    overflow-x: scroll;
+}
+
+.explore-stalls-list::-webkit-scrollbar{
+    display: none;
+}
+
+.explore-stalls-list-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+}
+
+.explore-stalls-list-item img{
+    width: 7.5vw;
+    min-width: 80px;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: 0.2s;
+}
+
+.explore-stalls-list-item p{
+    margin-top: 10px;
+    color: #747474;
+    font-size: max(1.2vw, 14px);
+    cursor: pointer;
+    text-align: center;
+}
+
+.explore-stalls-list-item .active{
+    border: 4px solid tomato;
+    padding: 2px;
+}
+
 @media (max-width:1050px){
     .explore-menu-text{
         max-width: 100%;
         font-size: 14px;
+    }
+    .explore-stalls-title{
+        font-size: 20px;
+    }
+    .explore-stalls-list-item{
+        min-width: 100px;
+    }
+    .explore-stalls-list-item p{
+        font-size: 13px;
+    }
+}
+
+@media (max-width:750px){
+    .explore-stalls-list{
+        gap: 20px;
+    }
+    .explore-stalls-list-item img{
+        min-width: 70px;
+    }
+    .explore-stalls-list-item p{
+        font-size: 12px;
     }
 }

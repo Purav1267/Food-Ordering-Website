@@ -116,6 +116,33 @@ export const menu_list = [
         menu_image: menu_8
     }]
 
+export const stalls_list = [
+    {
+        stall_name: "Kathi Junction",
+        stall_image: menu_1
+    },
+    {
+        stall_name: "Smoothie Zone",
+        stall_image: menu_2
+    },
+    {
+        stall_name: "Muskan Hotel",
+        stall_image: menu_3
+    },
+    {
+        stall_name: "Old Rao Hotel",
+        stall_image: menu_4
+    },
+    {
+        stall_name: "Cafe Twenty",
+        stall_image: menu_5
+    },
+    {
+        stall_name: "Shyam Dhaba",
+        stall_image: menu_6
+    }
+]
+
 export const food_list = [
     {
         _id: "1",

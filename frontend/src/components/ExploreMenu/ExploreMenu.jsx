@@ -1,8 +1,8 @@
 import React from 'react'
 import './ExploreMenu.css'
-import { menu_list } from '../../assets/assets'
+import { menu_list, stalls_list } from '../../assets/assets'
 
-const ExploreMenu = ({category,setCategory}) => {
+const ExploreMenu = ({category, setCategory, selectedStall, setSelectedStall}) => {
 
   return (
     <div className='explore-menu' id='explore-menu'>
@@ -14,6 +14,19 @@ const ExploreMenu = ({category,setCategory}) => {
                     <div onClick={()=>setCategory(prev=>prev===item.menu_name?"All":item.menu_name)} key={index} className="explore-menu-list-item">
                         <img className={category===item.menu_name?"active":""} src={item.menu_image} alt="" />
                         <p>{item.menu_name}</p>
+                    </div>
+                )
+            })}
+        </div>
+        <hr />
+        <h2 className='explore-stalls-title'>Explore with Stalls</h2>
+        <p className='explore-menu-text'>Select your favorite stall to see their delicious offerings</p>
+        <div className="explore-stalls-list">
+            {stalls_list.map((stall, index) => {
+                return(
+                    <div onClick={()=>setSelectedStall(prev=>prev===stall.stall_name?"":stall.stall_name)} key={index} className="explore-stalls-list-item">
+                        <img className={selectedStall===stall.stall_name?"active":""} src={stall.stall_image} alt="" />
+                        <p>{stall.stall_name}</p>
                     </div>
                 )
             })}

@@ -20,6 +20,131 @@
     gap: 40px;
 }
 
+.navbar-search-container{
+    position: relative;
+}
+
+.search-icon-clickable{
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.search-icon-clickable:hover{
+    transform: scale(1.1);
+}
+
+.search-dropdown{
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 350px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.search-input-wrapper{
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 10px;
+}
+
+.search-icon-in-input{
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.search-input{
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #49557e;
+}
+
+.search-input::placeholder{
+    color: #999;
+}
+
+.clear-search-icon{
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.clear-search-icon:hover{
+    opacity: 1;
+}
+
+.search-results{
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.search-result-item{
+    display: flex;
+    align-items: center;
+    padding: 12px 15px;
+    gap: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.search-result-item:hover{
+    background-color: #fff2ef;
+}
+
+.search-result-item:last-child{
+    border-bottom: none;
+}
+
+.search-result-image{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.search-result-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.search-result-name{
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: #49557e;
+}
+
+.search-result-price{
+    margin: 0;
+    font-size: 14px;
+    color: tomato;
+    font-weight: 600;
+}
+
+.search-no-results{
+    padding: 20px;
+    text-align: center;
+    color: #999;
+}
+
+.search-no-results p{
+    margin: 0;
+    font-size: 14px;
+}
+
 .navbar button{
     background: transparent;
     font-size: 16px;
@@ -107,6 +232,9 @@
     .navbar-right button{
         padding: 8px 25px;
     }
+    .search-dropdown{
+        width: 320px;
+    }
 }
 @media (max-width:900px){
     .navbar .logo{
@@ -126,9 +254,30 @@
         padding: 7px 20px;
         font-size: 15px;
     }
+    .search-dropdown{
+        width: 280px;
+        right: -20px;
+    }
 }
 @media (max-width:750px){
     .navbar-menu{
         display: none;
+    }
+    .search-dropdown{
+        width: 250px;
+        right: -40px;
+    }
+    .search-result-item{
+        padding: 10px 12px;
+    }
+    .search-result-image{
+        width: 40px;
+        height: 40px;
+    }
+    .search-result-name{
+        font-size: 14px;
+    }
+    .search-result-price{
+        font-size: 13px;
     }
 }

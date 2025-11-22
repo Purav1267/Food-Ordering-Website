@@ -3,11 +3,11 @@ import './FoodItem.css';
 import { assets } from '../../assets/assets';
 import { StoreContext } from '../../context/StoreContext';
 
-const FoodItem = ({ id, name, price, description, image }) => {
+const FoodItem = ({ id, name, price, description, image, isHighlighted }) => {
   const { cartItems, addToCart, removeFromCart , url} = useContext(StoreContext);
 
   return (
-    <div className='food-item'>
+    <div className={`food-item ${isHighlighted ? 'highlighted' : ''}`} id={`food-item-${id}`}>
       <div className="food-item-img-container">
         <img className='food-item-image' src={url+"/images/"+image} alt="" />
         {!cartItems[id]
