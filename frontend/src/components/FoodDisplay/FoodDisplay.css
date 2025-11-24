@@ -1,14 +1,33 @@
 .food-display{
-    margin-top: 30px;
+    margin-top: 50px;
+    animation: fadeIn 0.8s ease-out;
 }
+
 .food-display h2{
-    font-size: max(2vw,24px);
-    font-weight: 600;
+    font-size: max(2.5vw,28px);
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 10px;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
 }
+
 .food-display-list{
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(240px,1fr));
-    margin-top: 30px;
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+    margin-top: 40px;
+    gap: 35px;
     row-gap: 50px;
+    padding: 10px 0;
+}
+
+@media (max-width: 768px) {
+    .food-display-list {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 25px;
+        row-gap: 35px;
+    }
 }

@@ -1,27 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #ff6b4a;
+  --primary-dark: #ff4d2e;
+  --primary-light: #ff8c6b;
+  --secondary-color: #ffa500;
+  --accent-color: #ff4757;
+  --text-dark: #2d3436;
+  --text-light: #636e72;
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.16);
+  --gradient-primary: linear-gradient(135deg, #ff6b4a 0%, #ff8c6b 100%);
+  --gradient-hero: linear-gradient(135deg, rgba(255, 107, 74, 0.95) 0%, rgba(255, 140, 107, 0.95) 100%);
+  --gradient-card: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+}
+
 *{
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Outfit;
+  font-family: 'Outfit', 'Poppins', sans-serif;
   scroll-behavior: smooth;
 }
+
 body{
   min-height: 100vh;
+  background: linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
+  color: var(--text-dark);
+  line-height: 1.6;
 }
+
 a{
   text-decoration: none;
   color: inherit;
+  transition: all 0.3s ease;
 }
+
 .app{
-  width: 80%;
+  width: 85%;
+  max-width: 1400px;
   margin: auto;
+  position: relative;
 }
+
+/* Smooth scroll animations */
 @keyframes fadeIn {
   0%{
     opacity: 0;
+    transform: translateY(20px);
   }
   100%{
     opacity: 1;
+    transform: translateY(0);
   }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gradient-primary);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-dark);
+}
+
+/* Selection color */
+::selection {
+  background: var(--primary-color);
+  color: white;
 }
