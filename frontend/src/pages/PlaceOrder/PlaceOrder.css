@@ -141,3 +141,28 @@
 .place-order .cart-total button.disabled-button::before {
     display: none;
 }
+
+/* Promo Info Display (read-only) */
+.promo-info {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(40, 167, 69, 0.1);
+    border-radius: 8px;
+    border-left: 3px solid #28a745;
+}
+
+.promo-applied-text {
+    color: #28a745;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.discount-row {
+    color: #28a745;
+}
+
+.discount-amount {
+    color: #28a745;
+    font-weight: 600;
+}

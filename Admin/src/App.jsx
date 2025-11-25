@@ -5,6 +5,8 @@ import { Routes , Route } from 'react-router-dom'
 import Add from './components/pages/Add/Add'
 import Orders from './components/pages/Orders/Orders'
 import List from './components/pages/List/List'
+import Users from './components/pages/Users/Users'
+import Stalls from './components/pages/Stalls/Stalls'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -24,6 +26,8 @@ const App = () => {
           <Route path="/add" element={<Add url={url}/>}/>
           <Route path="/list" element={<List url={url}/>}/>
           <Route path="/orders" element={<Orders url={url}/>}/>
+          <Route path="/users" element={<Users url={url}/>}/>
+          <Route path="/stalls" element={<Stalls url={url}/>}/>
         </Routes>
       </div>
 

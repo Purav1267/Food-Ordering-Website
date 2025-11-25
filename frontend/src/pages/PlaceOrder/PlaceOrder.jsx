@@ -103,7 +103,18 @@ import { useNavigate } from 'react-router-dom';
 
 const PlaceOrder = () => {
   
-  const { getTotalCartAmount, token, food_list, cartItems, url } = useContext(StoreContext);
+  const context = useContext(StoreContext);
+  const { 
+    getTotalCartAmount = () => 0, 
+    token, 
+    food_list = [], 
+    cartItems = {}, 
+    url = "http://localhost:4000",
+    getTotalWithDiscount = () => 0,
+    discount = 0,
+    promoCode = "",
+    promoApplied = false
+  } = context || {};
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -334,10 +345,14 @@ const PlaceOrder = () => {
         }
     });
 
+    const finalAmount = getTotalWithDiscount();
+    
     let orderData = {
         address: data,
         items: orderItems,
-        amount: getTotalCartAmount(), // including delivery fee
+        amount: finalAmount, // final amount after discount
+        promoCode: promoApplied ? promoCode : null,
+        discount: discount || 0
     };
 
     try {
@@ -350,7 +365,7 @@ const PlaceOrder = () => {
 
             const options = {
                 key: "rzp_test_nXpT7OOHz9G5md",
-                amount: (getTotalCartAmount() + 2) * 100, // amount in smallest currency unit
+                amount: finalAmount * 100, // amount in smallest currency unit (after discount)
                 currency: "INR",
                 name: "TOMATO - Food Ordering",
                 description: "Test Transaction",
@@ -392,12 +407,20 @@ const PlaceOrder = () => {
 const navigate = useNavigate();
 useEffect(()=>{
   if (!token) {
-    navigate('/cart')
+    navigate('/cart');
+    return;
   }
-  else if(getTotalCartAmount() === 0 ){
-    navigate('/cart')
+  const total = getTotalCartAmount();
+  if (total === 0) {
+    navigate('/cart');
   }
-},[token])
+},[token, navigate, getTotalCartAmount])
+
+  // Safety check - don't render if context is not available
+  if (!context) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <form onSubmit={placeOrder} className='place-order'>
       <div className="place-order-left">
@@ -530,10 +553,24 @@ useEffect(()=>{
               <p>Delivery Fee</p>
               <p>₹{getTotalCartAmount() === 0 ? 0 : 2}</p>
             </div>
+            {discount && discount > 0 && (
+              <>
+                <hr />
+                <div className="cart-total-details discount-row">
+                  <p>Discount (50% off)</p>
+                  <p className="discount-amount">-₹{discount.toFixed(2)}</p>
+                </div>
+              </>
+            )}
+            {promoApplied && promoCode && (
+              <div className="promo-info">
+                <p className="promo-applied-text">✓ Promo code "{promoCode}" applied</p>
+              </div>
+            )}
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>₹{getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
+              <b>₹{getTotalWithDiscount().toFixed(2)}</b>
             </div>
           </div>
           <button 

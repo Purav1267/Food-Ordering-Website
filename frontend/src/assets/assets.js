@@ -134,10 +134,6 @@ export const stalls_list = [
         stall_image: menu_4
     },
     {
-        stall_name: "Cafe Twenty",
-        stall_image: menu_5
-    },
-    {
         stall_name: "Shyam Dhaba",
         stall_image: menu_6
     }

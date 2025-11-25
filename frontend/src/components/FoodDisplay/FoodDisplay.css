@@ -14,4 +14,191 @@
     margin-top: 30px;
     gap: 30px;
     row-gap: 50px;
+    align-items: start; /* Align all items to the top */
+}
+
+.explore-more-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.explore-more-btn {
+    padding: 12px 30px;
+    font-size: 16px;
+    font-weight: 600;
+    background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.explore-more-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.explore-more-btn:active {
+    transform: translateY(0);
+}
+
+.top-rated-stalls-section {
+    margin-top: 60px;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe8e0 100%);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.top-rated-stalls-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #2d3748;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, #ff6b4a 0%, #ff9a8b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.top-rated-stalls-subtitle {
+    color: #718096;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+
+.top-rated-stalls-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.top-rated-stall-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    padding: 20px;
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    min-width: 150px;
+}
+
+.top-rated-stall-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(255, 107, 74, 0.3);
+}
+
+.stall-badge {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    z-index: 10;
+}
+
+.rank-badge {
+    font-size: 32px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.stall-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff6b4a;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 74, 0.3);
+}
+
+.top-rated-stall-item:hover .stall-image {
+    border-color: #ff9a8b;
+    transform: scale(1.1);
+}
+
+.stall-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 10px 0;
+    text-align: center;
+}
+
+.stall-rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.rating-stars {
+    display: flex;
+    gap: 2px;
+}
+
+.rating-stars .star {
+    color: #ddd;
+    font-size: 16px;
+}
+
+.rating-stars .star.filled {
+    color: #ffd700;
+}
+
+.rating-value {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .top-rated-stalls-section {
+        padding: 30px 15px;
+    }
+
+    .top-rated-stalls-title {
+        font-size: 24px;
+    }
+
+    .top-rated-stalls-list {
+        gap: 25px;
+    }
+
+    .stall-image {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-rated-stalls-title {
+        font-size: 20px;
+    }
+
+    .top-rated-stalls-subtitle {
+        font-size: 14px;
+    }
+
+    .top-rated-stalls-list {
+        gap: 20px;
+    }
+
+    .stall-image {
+        width: 80px;
+        height: 80px;
+    }
+
+    .stall-name {
+        font-size: 16px;
+    }
 }

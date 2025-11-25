@@ -21,7 +21,7 @@
 }
 .order-item select{
     background-color: #ffe8e4;
-    border: 1px solid tomato;
+    border: 1px solid var(--primary-color);
     width: max(10vw,120px);
     padding: 10px;
     outline:none;

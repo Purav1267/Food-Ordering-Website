@@ -8,6 +8,9 @@ import cartRouter from "./routes/cartRoute.js"
 import orderRouter from "./routes/orderRoute.js"
 import stallOwnerRouter from "./routes/stallOwnerRoute.js"
 import stallOrderRouter from "./routes/stallOrderRoute.js"
+import feedbackRouter from "./routes/feedbackRoute.js"
+import ratingRouter from "./routes/ratingRoute.js"
+import adminRouter from "./routes/adminRoute.js"
 
 //APP CONFIG
 
@@ -30,6 +33,10 @@ app.use("/api/cart",cartRouter)
 app.use("/api/order",orderRouter)
 app.use("/api/stall-owner",stallOwnerRouter)
 app.use("/api/stall",stallOrderRouter)
+app.use("/api/feedback",feedbackRouter)
+app.use("/api/rating",ratingRouter)
+app.use("/api/admin",adminRouter)
+app.use("/feedback-images",express.static('uploads/feedback'))
 
 app.get("/",(req,res)=>{
     res.send("API Working")

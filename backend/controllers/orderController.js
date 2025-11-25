@@ -15,20 +15,31 @@ const placeOrder = async (req, res) => {
         // Extract unique stalls from order items
         const stalls = [...new Set(req.body.items.map(item => item.stall).filter(Boolean))];
         
-        // Format items to include itemId for easier tracking
+        // Format items to include itemId and stall for easier tracking
         const formattedItems = req.body.items.map(item => ({
             itemId: item._id,
             quantity: item.quantity,
             price: item.price,
-            name: item.name
+            name: item.name,
+            stall: item.stall || "" // Include stall name with each item
         }));
+
+        // Initialize stall statuses - each stall starts with "Food Processing"
+        const stallStatuses = {};
+        const stallAcceptance = {}; // Initialize acceptance status for each stall
+        stalls.forEach(stall => {
+            stallStatuses[stall] = "Food Processing";
+            stallAcceptance[stall] = "pending"; // All orders start as pending
+        });
 
         const newOrder = new orderModel({
             userId: req.body.userId,
             items: formattedItems,
             amount: req.body.amount,
             address: req.body.address,
-            stalls: stalls
+            stalls: stalls,
+            stallStatuses: stallStatuses, // Initialize status for each stall
+            stallAcceptance: stallAcceptance // Initialize acceptance for each stall
         });
         await newOrder.save();
         await userModel.findByIdAndUpdate(req.body.userId, { cartData: {} });
@@ -81,8 +92,58 @@ const verifyOrder = async (req, res) => {
 //user orders for frontend
 const userOrders = async (req,res) => {
     try {
-        const orders = await orderModel.find({userId:req.body.userId})
-        res.json({success:true,data:orders})
+        const orders = await orderModel.find({userId:req.body.userId}).sort({ date: -1 });
+        
+        // Populate orders with stall information for each item
+        const foodModel = (await import("../models/foodModel.js")).default;
+        const populatedOrders = await Promise.all(
+            orders.map(async (order) => {
+                // Group items by stall
+                const itemsByStall = {};
+                
+                for (const item of order.items) {
+                    const itemId = item.itemId || item._id;
+                    const food = await foodModel.findById(itemId);
+                    const stallName = food?.stall || item.stall || "Unknown Stall";
+                    
+                    if (!itemsByStall[stallName]) {
+                        itemsByStall[stallName] = {
+                            stallName: stallName,
+                            items: [],
+                            total: 0,
+                            status: order.stallStatuses?.[stallName] || order.status || "Food Processing",
+                            deliveryTime: order.stallDeliveryTimes?.[stallName] || null,
+                            acceptance: order.stallAcceptance?.[stallName] || "pending" // Acceptance status
+                        };
+                    }
+                    
+                    const quantity = item.quantity || 1;
+                    const price = item.price || food?.price || 0;
+                    const itemTotal = price * quantity;
+                    
+                    itemsByStall[stallName].items.push({
+                        ...item,
+                        foodDetails: food ? {
+                            name: food.name,
+                            price: food.price,
+                            image: food.image,
+                            category: food.category
+                        } : null
+                    });
+                    itemsByStall[stallName].total += itemTotal;
+                }
+                
+                // Convert to array
+                const stallGroups = Object.values(itemsByStall);
+                
+                return {
+                    ...order.toObject(),
+                    stallGroups: stallGroups // Orders grouped by stall
+                };
+            })
+        );
+        
+        res.json({success:true,data:populatedOrders})
     } catch (error) {
         console.log(error);
         res.json({success:false,message:"Error"})

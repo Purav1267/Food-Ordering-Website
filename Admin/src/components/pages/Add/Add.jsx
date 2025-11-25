@@ -10,7 +10,7 @@ const Add = ({url}) => {
         name:"",
         description:"",
         price:"",
-        category:"Salad",
+        category:"", // Must match homepage categories: Salad, Rolls, Deserts, Sandwich, Cake, Pure Veg, Pasta, Noodles
         stall:""
     }) 
 
@@ -35,7 +35,7 @@ const Add = ({url}) => {
                 name:"",
                 description:"",
                 price:"",
-                category:"Salad",
+                category:"",
                 stall:""
             })
             setImage(false)
@@ -67,16 +67,17 @@ const Add = ({url}) => {
             <div className="add-category-price">
                 <div className="add-category flex-col">
                     <p>Product Category</p>
-                    <select onChange={onChangeHandler} name="category" value={data.category}>
-                        <option value="Salad">Salad</option>
-                        <option value="Rolls">Rolls</option>
-                        <option value="Deserts">Deserts</option>
-                        <option value="Sandwich">Sandwich</option>
-                        <option value="Cake">Cake</option>
-                        <option value="Pure Veg">Pure Veg</option>
-                        <option value="Pasta">Pasta</option>
-                        <option value="Noodles">Noodles</option>
-                    </select>
+                        <select onChange={onChangeHandler} name="category" value={data.category} required>
+                            <option value="">Select Category</option>
+                            <option value="Salad">Salad</option>
+                            <option value="Rolls">Rolls</option>
+                            <option value="Deserts">Deserts</option>
+                            <option value="Sandwich">Sandwich</option>
+                            <option value="Cake">Cake</option>
+                            <option value="Pure Veg">Pure Veg</option>
+                            <option value="Pasta">Pasta</option>
+                            <option value="Noodles">Noodles</option>
+                        </select>
                 </div>
                 <div className="add-price flex-col">
                     <p>Product Price</p>
@@ -91,7 +92,6 @@ const Add = ({url}) => {
                     <option value="Smoothie Zone">Smoothie Zone</option>
                     <option value="Muskan Hotel">Muskan Hotel</option>
                     <option value="Old Rao Hotel">Old Rao Hotel</option>
-                    <option value="Cafe Twenty">Cafe Twenty</option>
                     <option value="Shyam Dhaba">Shyam Dhaba</option>
                 </select>
             </div>

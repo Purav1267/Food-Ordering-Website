@@ -57,5 +57,69 @@ const removeFood = async (req,res)=>{
     }
 }
 
+//update food item
+const updateFood = async (req,res)=>{
+    try {
+        const { id, name, description, price, category, stall } = req.body;
+        const food = await foodModel.findById(id);
+        
+        if (!food) {
+            return res.json({success:false,message:"Food item not found"});
+        }
 
-export {addFood,listFood,removeFood}
+        // Update fields
+        if (name !== undefined) food.name = name;
+        if (description !== undefined) food.description = description;
+        if (price !== undefined) food.price = parseFloat(price);
+        if (category !== undefined) food.category = category;
+        if (stall !== undefined) food.stall = stall;
+
+        // Handle image update if new image is provided
+        if (req.file) {
+            // Delete old image if it exists
+            try {
+                if (food.image && fs.existsSync(`uploads/${food.image}`)) {
+                    fs.unlink(`uploads/${food.image}`,()=>{});
+                }
+            } catch (err) {
+                console.log("Error deleting old image:", err);
+            }
+            food.image = req.file.filename;
+        }
+
+        await food.save();
+        res.json({success:true,message:"Food Updated", data: food});
+
+    } catch (error) {
+        console.log(error);
+        res.json({success:false,message:"Error updating food item"})
+    }
+}
+
+
+// Pause or unpause food item
+const togglePauseFood = async (req, res) => {
+    try {
+        const { id, isPaused } = req.body;
+        const food = await foodModel.findById(id);
+        
+        if (!food) {
+            return res.json({success: false, message: "Food item not found"});
+        }
+
+        // Update isPaused status
+        food.isPaused = isPaused === true || isPaused === "true";
+        await food.save();
+        
+        res.json({
+            success: true,
+            message: food.isPaused ? "Food item paused" : "Food item unpaused",
+            data: food
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({success: false, message: "Error updating food item pause status"});
+    }
+}
+
+export {addFood,listFood,removeFood,updateFood,togglePauseFood}

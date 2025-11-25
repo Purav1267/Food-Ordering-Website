@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Login from './components/Login/Login';
 import Dashboard from './components/Dashboard/Dashboard';
 import Orders from './components/Orders/Orders';
@@ -19,10 +20,31 @@ const App = () => {
     if (storedToken && storedStallOwner) {
       setToken(storedToken);
       setStallOwner(JSON.parse(storedStallOwner));
+      
+      // Refresh stall owner info from backend to get latest stallName
+      const refreshStallOwnerInfo = async () => {
+        try {
+          const response = await axios.get(`${url}/api/stall-owner/info`, {
+            headers: { token: storedToken }
+          });
+          if (response.data.success) {
+            const updatedStallOwner = {
+              id: JSON.parse(storedStallOwner).id,
+              name: response.data.data.name,
+              stallName: response.data.data.stallName
+            };
+            localStorage.setItem('stallOwner', JSON.stringify(updatedStallOwner));
+            setStallOwner(updatedStallOwner);
+          }
+        } catch (error) {
+          console.error('Error refreshing stall owner info:', error);
+        }
+      };
+      refreshStallOwnerInfo();
     } else {
       navigate('/login');
     }
-  }, [navigate]);
+  }, [navigate, url]);
 
   const handleLogout = () => {
     localStorage.removeItem('stallOwnerToken');

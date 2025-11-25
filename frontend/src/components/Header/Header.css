@@ -21,7 +21,7 @@
     right: 0;
     bottom: 0;
     background: var(--gradient-hero);
-    opacity: 0.85;
+    opacity: 0.2;
     z-index: 1;
 }
 
@@ -57,7 +57,7 @@
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     line-height: 1.2;
     letter-spacing: -0.5px;
-    margin-bottom: 0.5vw;
+    margin-bottom: 3.5vw;
 }
 
 .header-contents p{

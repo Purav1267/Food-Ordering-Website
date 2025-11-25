@@ -81,5 +81,52 @@ const getStallOwnerInfo = async (req, res) => {
     }
 };
 
-export { registerStallOwner, loginStallOwner, getStallOwnerInfo };
+// Update Stall Owner (for connecting to existing stall)
+const updateStallOwner = async (req, res) => {
+    try {
+        const { stallName } = req.body;
+        const stallOwnerId = req.userId;
+
+        if (!stallName) {
+            return res.json({ success: false, message: "Stall name is required" });
+        }
+
+        // Check if another stall owner already has this stall name
+        const existingStall = await stallOwnerModel.findOne({ 
+            stallName: stallName,
+            _id: { $ne: stallOwnerId }
+        });
+        
+        if (existingStall) {
+            return res.json({ success: false, message: "This stall name is already taken by another account" });
+        }
+
+        // Update the stall owner
+        const updatedStallOwner = await stallOwnerModel.findByIdAndUpdate(
+            stallOwnerId,
+            { stallName: stallName },
+            { new: true }
+        );
+
+        if (!updatedStallOwner) {
+            return res.json({ success: false, message: "Stall owner not found" });
+        }
+
+        res.json({ 
+            success: true, 
+            message: "Stall name updated successfully",
+            data: { 
+                name: updatedStallOwner.name, 
+                email: updatedStallOwner.email, 
+                stallName: updatedStallOwner.stallName, 
+                phone: updatedStallOwner.phone 
+            } 
+        });
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: "Error updating stall owner" });
+    }
+};
+
+export { registerStallOwner, loginStallOwner, getStallOwnerInfo, updateStallOwner };
 

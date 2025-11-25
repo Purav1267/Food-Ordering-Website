@@ -9,7 +9,9 @@ const Navbar = ({setShowLogin}) => {
   const [menu,setMenu] = useState("Home");
   const [showSearch, setShowSearch] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const searchRef = useRef(null);
+  const profileRef = useRef(null);
 
   const {getTotalCartAmount,token,setToken,food_list,url} = useContext(StoreContext);
 
@@ -37,6 +39,9 @@ const Navbar = ({setShowLogin}) => {
       if (searchRef.current && !searchRef.current.contains(event.target)) {
         setShowSearch(false);
         setSearchQuery("");
+      }
+      if (profileRef.current && !profileRef.current.contains(event.target)) {
+        setShowProfileDropdown(false);
       }
     };
 
@@ -135,13 +140,29 @@ const Navbar = ({setShowLogin}) => {
                 <div className={getTotalCartAmount()===0?"":"dot"}></div>
             </div>
             {!token?<button onClick={()=>setShowLogin(true)}>Sign In</button>
-            :<div className='navbar-profile'> 
-                <img src={assets.profile_icon} alt="" />
-                <ul className="nav-profile-dropdown">
-                  <li onClick={()=>navigate('/myorders')}><img src={assets.bag_icon} alt="" /><p>Orders</p></li>
-                  <hr />
-                  <li onClick={logout}><img src={assets.logout_icon} alt="" /><p>Logout</p></li>
-                </ul>
+            :<div className='navbar-profile' ref={profileRef}> 
+                <img 
+                  src={assets.profile_icon} 
+                  alt="" 
+                  onClick={() => setShowProfileDropdown(!showProfileDropdown)}
+                />
+                {showProfileDropdown && (
+                  <ul className="nav-profile-dropdown">
+                    <li onClick={() => {
+                      setShowProfileDropdown(false);
+                      navigate('/myorders');
+                    }}>
+                      <img src={assets.bag_icon} alt="" /><p>Orders</p>
+                    </li>
+                    <hr />
+                    <li onClick={() => {
+                      setShowProfileDropdown(false);
+                      logout();
+                    }}>
+                      <img src={assets.logout_icon} alt="" /><p>Logout</p>
+                    </li>
+                  </ul>
+                )}
               </div>}
         </div>
     </div>

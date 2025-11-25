@@ -21,6 +21,60 @@
     margin-top: 40px;
 }
 
+.order-container {
+    margin-bottom: 30px;
+    border: 2px solid rgba(255, 107, 74, 0.2);
+    border-radius: 20px;
+    background: white;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 25px;
+    background: linear-gradient(135deg, rgba(255, 107, 74, 0.05) 0%, rgba(255, 140, 107, 0.05) 100%);
+    border-bottom: 2px solid rgba(255, 107, 74, 0.2);
+}
+
+.order-header-info h3 {
+    margin: 0 0 8px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+}
+
+.order-date {
+    margin: 0 0 8px 0;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.order-address {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.order-total-amount {
+    text-align: right;
+}
+
+.total-label {
+    margin: 0 0 5px 0;
+    color: var(--text-light);
+    font-size: 14px;
+}
+
+.total-value {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
 .my-orders-order{
     display: grid;
     grid-template-columns: 0.5fr 2fr 1fr 1fr 2fr 1fr;
@@ -29,11 +83,118 @@
     font-size: 15px;
     padding: 20px 25px;
     color: var(--text-dark);
-    border: 2px solid rgba(255, 107, 74, 0.2);
-    border-radius: 16px;
+    border-bottom: 1px solid rgba(255, 107, 74, 0.1);
     background: white;
-    box-shadow: var(--shadow-sm);
     transition: all 0.3s ease;
+}
+
+.my-orders-order.stall-group {
+    border-left: 4px solid var(--primary-color);
+    margin: 0;
+}
+
+.my-orders-order.stall-group:last-child {
+    border-bottom: none;
+}
+
+.stall-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.stall-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stall-amount {
+    font-weight: 600;
+    color: var(--text-dark);
+}
+
+.stall-items-count {
+    color: var(--text-light);
+}
+
+.stall-status-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.stall-status {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.acceptance-status {
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.acceptance-status.accepted {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+    border: 1px solid #28a745;
+}
+
+.acceptance-status.rejected {
+    background: rgba(220, 53, 69, 0.1);
+    color: #dc3545;
+    border: 1px solid #dc3545;
+}
+
+.acceptance-status.pending {
+    background: rgba(255, 193, 7, 0.1);
+    color: #ffc107;
+    border: 1px solid #ffc107;
+}
+
+.order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.feedback-btn-small {
+    padding: 6px 12px;
+    background: linear-gradient(135deg, #ff6b4a 0%, #ff9a8b 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.feedback-btn-small:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(255, 107, 74, 0.3);
+}
+
+.feedback-given {
+    color: #28a745;
+    font-size: 12px;
+    font-weight: 600;
 }
 
 .my-orders-order:hover {
@@ -85,14 +246,51 @@
 }
 
 @media (max-width:900px) {
+    .order-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .order-total-amount {
+        text-align: left;
+    }
+    
     .my-orders-order{
         grid-template-columns: 1fr 2fr 1fr;
         row-gap: 10px;
         font-size: 13px;
         padding: 15px 20px;
     }
+    
+    .stall-name {
+        font-size: 16px;
+    }
+    
     .my-orders-order button{
         font-size: 12px;
         padding: 10px 16px;
+    }
+}
+
+@media (max-width:600px) {
+    .order-header {
+        padding: 15px 20px;
+    }
+    
+    .order-header-info h3 {
+        font-size: 18px;
+    }
+    
+    .total-value {
+        font-size: 20px;
+    }
+    
+    .my-orders-order {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stall-info {
+        grid-column: 1 / -1;
     }
 }
