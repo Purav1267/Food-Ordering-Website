@@ -13,6 +13,7 @@ A comprehensive food ordering website that allows customers to order from multip
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
+- [Screenshots](#-screenshots)
 - [Tech Stack](#-tech-stack)
 - [Project Structure](#-project-structure)
 - [Installation](#-installation)
@@ -104,6 +105,94 @@ A comprehensive food ordering website that allows customers to order from multip
 - ✅ Dashboard with revenue analytics
 
 ### 🔐 System Features
+- ✅ JWT-based authentication for all user types
+- ✅ Secure password hashing with bcrypt
+- ✅ File upload handling with Multer
+- ✅ Razorpay payment gateway integration
+- ✅ Multi-stall order segregation
+- ✅ Per-stall status tracking
+- ✅ Real-time order updates via polling
+- ✅ CORS configuration for cross-origin requests
+
+---
+
+## 📸 Screenshots
+
+### Customer Interface
+
+#### 1. Homepage - Customer Homepage
+![Homepage](Photos/tomato-1.png)
+*Customer homepage with featured food items, top-rated stalls, and categories*
+
+#### 2. Explore Menu/Stalls - Explore Page
+![Explore Menu](Photos/tomato-2.png)
+*Explore page with menu and stall options for browsing*
+
+#### 3. Menu with Top Dishes - Menu Browsing
+![Menu with Top Dishes](Photos/tomato-3.png)
+*Menu browsing interface with top dishes and food images*
+
+#### 4. Shopping Cart with Promo Code - Cart Page
+![Shopping Cart](Photos/tomato-4.png)
+*Shopping cart page with promo code functionality (BML - 50% off)*
+
+#### 5. Payment Page - Proceed to Payment
+![Payment Page](Photos/tomato-5.png)
+*Checkout page with delivery information and order summary*
+
+#### 6. Orders Page - Customer Orders
+![Orders Page](Photos/tomato-6.png)
+*Customer orders page showing order history grouped by stall*
+
+#### 7. Stall Dashboard - Stall-Specific Dashboard
+![Stall Dashboard](Photos/tomato-7.png)
+*Stall-specific dashboard showing menu items for a particular stall*
+
+#### 8. Razorpay Payment - Payment Gateway
+![Razorpay Payment](Photos/tomato-8.png)
+*Razorpay payment gateway interface for secure payment processing*
+
+### Stall Admin Interface
+
+#### 9. Stall Admin Panel - Main Interface
+![Stall Admin Panel](Photos/tomato-9.jpeg)
+*Main stall admin interface with dashboard and navigation*
+
+#### 10. Stall Order Management - Order Management
+![Stall Order Management](Photos/tomato-10.jpeg)
+*Order management interface for stall owners to view and update orders*
+
+#### 11. Stall Order Details - Detailed Order View
+![Stall Order Details](Photos/tomato-11.jpeg)
+*Detailed order view showing order items, customer information, and status*
+
+#### 12. Stall Menu Dashboard - Menu Management
+![Stall Menu Dashboard](Photos/tomato-12.jpeg)
+*Menu management dashboard for stall owners to add, edit, and pause items*
+
+### System Admin Interface
+
+#### 13. Admin Add Item - Add Item Form
+![Admin Add Item](Photos/tomato-13.jpeg)
+*Main admin interface for adding new food items with image upload*
+
+#### 14. Admin Items List - Complete Items List
+![Admin Items List](Photos/tomato-14.jpeg)
+*Complete list of all food items in the system with management options*
+
+#### 15. Admin Orders List - All Orders Overview
+![Admin Orders List](Photos/tomato-15.jpeg)
+*System-wide orders overview showing all orders from all stalls*
+
+#### 16. Admin User Management - User Management
+![Admin User Management](Photos/tomato-16.jpeg)
+*User management interface for viewing and managing customer accounts*
+
+#### 17. Admin Stall Management - Stall Management
+![Admin Stall Management](Photos/tomato-17.jpeg)
+*Stall management interface for managing all stalls in the system*
+
+---
 - ✅ JWT-based authentication for all user types
 - ✅ Secure password hashing with bcrypt
 - ✅ File upload handling with Multer
