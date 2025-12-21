@@ -93,3 +93,15 @@ jspm_packages/
 # Temporary folders
 tmp/
 temp/
+
+# Documentation and guide files (keep locally, don't push to GitHub)
+DEPLOYMENT_GUIDE.md
+ADD_MENUS.md
+DOCUMENTATION_INDEX.md
+IMPROVEMENTS_SUGGESTIONS.md
+PORTS_INFO.md
+PROJECT_DOCUMENTATION.md
+PROJECT_REPORT_BATCH1.md
+PROJECT_REPORT_BATCH2.md
+PROJECT_REPORT_BATCH3.md
+STALL_LOGIN_DETAILS.md
